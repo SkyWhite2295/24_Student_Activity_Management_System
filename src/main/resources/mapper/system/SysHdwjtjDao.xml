@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.jeefast.system.dao.SysHdwjtjDao">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="cn.jeefast.system.entity.SysHdwjtj">
+		<id column="id" property="id" />
+		<result column="xinwenid" property="xinwenid" />
+		<result column="username" property="username" />
+		<result column="spzt" property="spzt" />
+		<result column="spry" property="spry" />
+		<result column="updatetime" property="updatetime" />
+		<result column="updateuser" property="updateuser" />
+		<result column="createtime" property="createtime" />
+		<result column="createuser" property="createuser" />
+	</resultMap>
+
+
+	<delete id="deleteBatch">
+		delete from sys_hdwjtj where id in
+		<foreach item="ids" collection="array" open="(" separator="," close=")">
+			#{ids}
+		</foreach>
+	</delete>
+	<select id="queryPageList" resultType="cn.jeefast.system.entity.SysHdwjtj">
+		select r.*,sx.title xinwenname  from sys_hdwjtj r
+		left join sys_xinwen sx
+		on r.xinwenid = sx.id
+		<where>
+			<if test="name != null and name.trim() != ''">
+				and r.`name` like concat('%',#{name},'%')
+			</if>
+		</where>
+		order by r.updatetime desc
+	</select>
+</mapper>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>活动信息管理</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/font-awesome.min.css">
+	<link rel="stylesheet" href="../../plugins/jqgrid/ui.jqgrid-bootstrap.css">
+	<link rel="stylesheet" href="../../plugins/ztree/css/metroStyle/metroStyle.css">
+	<link rel="stylesheet" href="../../css/main.css">
+	<script src="../../libs/jquery.min.js"></script>
+	<script src="../../plugins/layer/layer.js"></script>
+	<script src="../../libs/bootstrap.min.js"></script>
+	<script src="../../libs/vue.min.js"></script>
+	<script src="../../plugins/jqgrid/grid.locale-cn.js"></script>
+	<script src="../../plugins/jqgrid/jquery.jqGrid.min.js"></script>
+	<script src="../../plugins/ztree/jquery.ztree.all.min.js"></script>
+	<script src="../../js/common.js"></script>
+	<script src="../../plugins/laydate/laydate.js"></script>
+	<script src="../../libs/jquery/jquery.PrintArea.min.js"></script>
+
+
+	<link href="../../js/summernote/summernote.css" rel="stylesheet">
+	<script src="../../js/summernote/summernote.js"></script>
+	<script src="../../js/summernote/summernote.min.js"></script>
+</head>
+<!--startprint-->
+<body>
+<div id="rrapp" v-cloak>
+	<div v-show="showList">
+		<div class="grid-btn">
+			<div class="form-group col-sm-2">
+				<input type="text" class="form-control" v-model="q.xinwenName" @keyup.enter="query" placeholder="活动标题">
+			</div>
+			<a class="btn btn-default" @click="query">查询</a>
+			<!--			<a v-if="hasPermission('sys:xinwen:info')" class="btn btn-custom btn-sm" @click="info"></i>&nbsp;活动报名</a>-->
+			<a v-if="hasPermission('sys:xinwen:save')" class="btn btn-purple btn-sm" @click="add"><i class="fa fa-plus"></i>&nbsp;发布活动</a>
+			<a v-if="hasPermission('sys:xinwen:update')" class="btn btn-primary btn-sm" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+			<a v-if="hasPermission('sys:xinwen:delete')" class="btn btn-danger btn-sm" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+			<a v-if="hasPermission('sys:xinwen:sp')" class="btn btn-success btn-sm" @click="sp(1)">&nbsp;审核通过</a>
+			<a v-if="hasPermission('sys:xinwen:sp')" class="btn btn-orange-red btn-sm" @click="sp(2)">&nbsp;驳回</a>
+
+		</div>
+		<table id="jqGrid"></table>
+		<div id="jqGridPager"></div>
+	</div>
+
+	<div v-show="!showList" class="panel panel-default">
+		<div class="panel-heading">{{title}}</div>
+		<form class="form-horizontal" style="width: 100%">
+
+			<div class="form-group">
+				<div class="col-sm-2 control-label">活动标题</div>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" v-model="xinwen.title" placeholder="活动标题"/>
+				</div>
+			</div>
+
+			<!--			<div class="form-group">-->
+			<!--				<div class="col-sm-2 control-label">发布负责人</div>-->
+			<!--				<div class="col-sm-10">-->
+			<!--					<input type="text" class="form-control" v-model="xinwen.zuozhe" placeholder="发布负责人"/>-->
+			<!--				</div>-->
+			<!--			</div>-->
+
+			<div class="form-group">
+				<div class="col-sm-2 control-label">活动时间</div>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="hdsj" readonly v-model="xinwen.hdsj" placeholder="活动时间"/>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-2 control-label">学分类型</div>
+				<div class="col-sm-10">
+					<select class="form-control" v-model="xinwen.xflx" >
+						<option v-for="xflx in xflxs" :value="xflx.id">{{xflx.name}}</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-2 control-label">活动分值</div>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="hdfz" v-model="xinwen.hdfz" placeholder="活动分值"/>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-2 control-label">活动地点</div>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" v-model="xinwen.hddd" placeholder="活动地点"/>
+				</div>
+			</div>
+
+
+			<div class="form-group">
+				<div class="col-sm-2 control-label">内容</div>
+				<div class="col-sm-10">
+					<div id="content_sn" class="summernote"></div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-2 control-label"></div>
+				<input type="button" class="btn btn-primary" @click="saveOrUpdate" value="确定"/>
+				<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+			</div>
+		</form>
+	</div>
+
+
+</div>
+
+<!-- 选择部门 -->
+<div id="deptLayer" style="display: none;padding:10px;">
+	<ul id="deptTree" class="ztree"></ul>
+</div>
+<script src="../../js/modules/sys/xinwen.js"></script>
+
+</body>
+<!--endprint-->
+</html>

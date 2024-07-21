@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.jeefast.system.dao.SysXinwenDao">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="cn.jeefast.system.entity.SysXinwen">
+		<id column="id" property="id" />
+		<result column="title" property="title" />
+		<result column="content" property="content" />
+		<result column="zuozhe" property="zuozhe" />
+		<result column="createuser" property="createuser" />
+		<result column="updateuser" property="updateuser" />
+		<result column="updatetime" property="updatetime" />
+		<result column="createtime" property="createtime" />
+		<result column="spzt" property="spzt" />
+	</resultMap>
+	<delete id="deleteBatch">
+		delete from sys_xinwen where id in
+		<foreach item="xinwenIds" collection="array" open="(" separator="," close=")">
+			#{xinwenIds}
+		</foreach>
+	</delete>
+	<select id="queryPageList" resultType="cn.jeefast.system.entity.SysXinwen">
+		select r.*,st.name xflxname  from sys_xinwen r
+		left join sys_type st
+		on r.xflx = st.id
+		<where>
+			<if test="title != null and title.trim() != ''">
+				and r.`title` like concat('%',#{title},'%')
+			</if>
+			<if test="type != null and type.trim() != ''">
+				and r.`type` = #{type}
+			</if>
+			<if test="spzt != null and spzt.trim() != ''">
+				and r.`spzt` = #{spzt}
+			</if>
+		</where>
+		order by r.hdsj desc
+	</select>
+
+</mapper>

@@ -1,0 +1,631 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" by:nzcms·ningzhi.net
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" type="image/ico" href="nz.ico">
+    <link href="js/home/css/css.css" rel="stylesheet" type="text/css"/>
+    <link href="js/home/css/css_2.css" rel="stylesheet" type="text/css"/>
+    <link type="text/css" href="js/pl/css/style.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="libs/jquery.min.js"></script>
+    <script src="plugins/layer/layer.js"></script>
+    <script src="libs/bootstrap.min.js"></script>
+    <script src="libs/vue.min.js"></script>
+    <script src="plugins/jqgrid/grid.locale-cn.js"></script>
+    <script src="plugins/jqgrid/jquery.jqGrid.min.js"></script>
+    <script src="plugins/ztree/jquery.ztree.all.min.js"></script>
+    <script src="js/common.js"></script>
+    <script src="plugins/laydate/laydate.js"></script>
+    <script src="libs/jquery/jquery.PrintArea.min.js"></script>
+
+    <style>
+        /*顶部条状态*/
+        .user_login a{
+            color:#666;
+        }
+        .user_login a:hover{
+            color: #f80;
+        }
+        .search_con .input_text{
+            width:470px;
+            height:37px;
+            border:0px;
+            margin-left:37px;
+            outline:none;
+        }
+        .search_con .input_btn{
+            width:100px;
+            height:38px;
+            background-color: #37ab40;
+            border:0;
+            font:14px/38px 'Microsoft YaHei UI';
+            color:#fff;
+            /*鼠标变成手*/
+            cursor:pointer;
+        }
+        .subnav_con h1{
+            width:200px;
+            height:40px;
+            background-color: #37ab40;
+            font:14px/40px 'Microsoft YaHei UI';
+            text-align:center;
+            color:#fff;
+        }
+        .subnav_con i{
+            width: 11px;
+            height: 7px;
+            background:url(../images/down.png) left center no-repeat;
+            overflow: hidden;
+            display: inline-block;
+        }
+        .navlist li{
+            float:left;
+            height:14px;
+            padding:0 25px;
+            border-left:1px solid #666;
+            margin-left:-2px;
+            margin-top:13px;
+        }
+        .submena a{
+            color:#37ab40;
+            line-height: 30px;
+        }
+
+        .center_con .main_menu{
+            width:350px;
+            height:350px;
+            overflow:hidden;
+        }
+        .goods_detail_list h3{
+            font-size:24px;
+            line-height:24px;
+            color:#666;
+            font-weight:normal;
+        }
+        .goods_detail_list p{
+            color:#666;
+            line-height:40px;
+        }
+        .prize_bar .show_prize{
+            font-size:20px;
+            color:#ff3e3e;
+            padding-left:20px
+        }
+        .prize_bar .show_pirze em{
+            font-style:normal;
+            font-size:36px;
+            padding-left:10px
+        }
+        .prize_bar .show_unit{
+            padding-left: 150px;
+        }
+        .goods_num .num_name{
+            width:70px;
+            height:52px;
+            line-height:52px;
+        }
+        .goods_num .num_add{
+            width:75px;
+            height:50px;
+            border:1px solid #dddddd;
+        }
+        .goods_num .num_add .num_show{
+            width:49px;
+            height:50px;
+            text-align:center;
+            line-height:50px;
+            border:0px;
+            outline:none;
+            font-size:14px;
+            color:#666;
+        }
+        .goods_num .num_add .add,.goods_num .num_add .minus{
+            width:25px;
+            line-height:25px;
+            text-align:center;
+            border-left:1px solid #ddd;
+            border-bottom:1px solid #ddd;
+            color:#666;
+            font-size:14px;
+        }
+        .goods_num .num_add .minus{
+            border-bottom:0px;
+        }
+        .total em{
+            font-style:normal;
+            color:#ff3e3e;
+            font-size:18px
+        }
+        .operate_btn .buy_btn,.operate_btn .add_cart{
+            display:inline-block;
+            width:178px;
+            height:38px;
+            border:1px solid #c40000;
+            font-size:14px;
+            color:#c40000;
+            line-height:38px;
+            text-align:center;
+            background-color:#ffeded;
+        }
+        .operate_btn .add_cart{
+            background-color:#c40000;
+            color:#fff;
+            margin-left:10px;
+            position:relative;
+            z-index:10;
+        }
+        body,p,h1,h2,h3,h4,h5,h6,ul,dl,dt,form,input{
+            margin:0;
+            padding:0;
+        }
+
+        ul{
+            list-style:none;
+        }
+        a{
+            text-decoration:none;
+        }
+
+        em{
+            font-style:normal;
+        }
+
+        img{
+            border:0px;
+        }
+
+        h1,h2,h3,h4,h5,h6{
+            font-size:100%;
+        }
+        .clearfix:before,.clearfix:after{
+            content:"";
+            display:table;
+        }
+        .clearfix:after{
+            clear:both;
+        }
+        .clearfix{
+            zoom:1;
+        }
+        #boxa .on{
+            background: url('img/x2.png') no-repeat;
+        }
+        #boxa div{
+            width: 56px;
+            height: 59px;
+            float: left;
+            background: url('img/x1.png') no-repeat;
+        }
+    </style>
+    <!--防止网页被框架 -->
+
+    <!--ie6PNG图片兼容 -->
+    <script type="text/javascript" src="js/home/js/png.js"></script>
+    <script type="text/javascript" src="js/home/js/jquery.liMarquee.js"></script>
+    <script type="text/javascript">
+        DD_belatedPNG.fix('.png,.index_pic_img,.box');
+    </script>
+
+    <!--ie6PNG图片兼容 -->
+</head>
+
+<body style="width: 100%;height: 100%">
+<div id="rrapp" style="width: 100%;height: 100%">
+
+    <!--下拉这里开始 -->
+    <script type="text/javascript">
+        <!--
+        var timeout = 200;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+
+        function message() {
+            $('#b').show();
+            $('#c').hide();
+            $('#d').hide();
+            var oDiv=document.getElementById('top_dh_01');
+            oDiv.style.height='130px';
+        }
+
+    </script>
+
+
+    <div id="top_dh_01" style="text-align: center; background-color: #2275A1 ;">
+        <form  method="post" class="form form-horizontal">
+            <div id="sddm" style=" width:1200px;margin: auto;height: 100%;overflow:hidden;">
+
+                <ul style=" list-style-type:none;  display:inline; text-align: center; ">
+
+                    <li style="  line-height: 65px; font-size:18px;"><a style="font-size:20px;" href="index.html#modules/sys/xinwen.html">返回活动列表</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    </li>
+
+                </ul>
+            </div>
+        </form>
+
+    </div>
+    <!--下拉这里结束 -->
+
+
+    <link type="text/css" rel="stylesheet" href="js/home/css/wang.css">
+    <div><img src="img/banner.jpg" style="width: 100%;"/></div>
+    <div id="box" style="width: 100%;height: 100%">
+        <table class="table1200" border="0" align="center" cellpadding="0" cellspacing="8" bgcolor="#FFFFFF">
+            <tr valign="top">
+                <td width="1" align="center" valign="top" bgcolor="#F5F5F5">
+                    <!--左侧栏目 -->
+                    <table height="30" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td></td>
+                        </tr>
+                    </table>
+                </td>
+                <td align="center">
+
+
+                    <table height="30" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <table width="100%" height="30" border="0" cellpadding="3" cellspacing="0" bgcolor="#F5F5F5"
+                           class="bg_qc">
+                        <tr>
+                            <td width="25" height="20" align="center"><img
+                                    src="img/nzcms.xinxin.gif" alt="标"/></td>
+                            <td align="left" class="title12">您的位置：
+                                &nbsp;&gt;&nbsp;
+                                详情内容页面
+                            </td>
+                        </tr>
+                    </table>
+                    <table height="10" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td></td>
+                        </tr>
+                    </table>
+
+                    <div style="width:auto;height:auto;" id="div1">
+                        <!-- 标题 -->
+                        <div class="articleTitle" ><h2>{{xinwen.title}}</h2></div>
+                        <div class="line"></div>
+                        <div class="articlecomm" >
+                            <span>信息来源：本网站</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span>活动时间：{{xinwen.hdsj}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span>活动地点：{{xinwen.hddd}}</span>
+                        </div>
+                        <div class="articleContent" v-html="xinwen.content" >
+                            {{xinwen.content}}
+                        </div>
+                        <div v-show="xinwen.type == '1'">
+                            <a class="btn btn-default"  @click="baoming(xinwen.id)">报名</a>
+                        </div>
+
+                    </div>
+
+                    <table width="98%" border="0" cellpadding="0" cellspacing="0" bordercolor="#FFFFFF">
+                        <tr>
+                            <td align="right" class="list_title" style=" border-bottom: 1px solid #d8dadc;">&nbsp;</td>
+                        </tr>
+                    </table>
+                    <!--文章显示 -->
+                    <div style="height: 100px"></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    ﻿
+    <div id="end_dh_BOX">
+
+        <div id="end_dh_03" style="background-color: #2275A1;width:100%;color: #efefef;font-family:microsoft yahei;position: fixed;left: 0;bottom: 0;">
+            <br>
+            欢迎积极报名！
+            <br>
+            <style>
+                .c_img {
+                    position: relative;
+                    margin-left: -200px;
+                }
+
+                .c_words {
+                    margin-top: -25px;
+                    margin-left: 25px;
+                }
+            </style>
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="libs/jquery.min.js"></script>
+<script src="plugins/jqgrid/jquery.jqGrid.min.js"></script>
+<script src="libs/vue.min.js"></script>
+<script src="libs/bootstrap.min.js"></script>
+<script src="libs/app.js"></script>
+<script src="js/common.js"></script>
+<script type="text/javascript">
+    function words_deal()
+    {
+        var curLength=$("#TextArea1").val().length;
+        if(curLength>140)
+        {
+            var num=$("#TextArea1").val().substr(0,140);
+            $("#TextArea1").val(num);
+            alert("超过字数限制，多出的字将被截断！" );
+        }
+        else
+        {
+            $("#textCount").text(140-$("#TextArea1").val().length);
+        }
+    }
+
+
+    var vm = new Vue({
+        el:'#rrapp',
+        data:{
+            cur : -1,
+            df: 1.0,
+            flag : false, //鼠标点击后变成true，鼠标进入进出事件就不会改变背景图
+            lishow: true,
+            showLogin:false,
+            xinwen:{},
+            pllist:[],
+            allFileOlds:[],
+            xinwenId:'',
+            shouchaobaoshow:false,
+            sysuser:{},
+            importModle: true,
+            showList: true,
+            showDelect: true,
+            qdid:"",
+            allFiles: [],
+            scxwid:"",
+        },
+        beforeCreate: function(){
+            if(self != top){
+                top.location.href = self.location.href;
+            }
+        },
+        mounted: function () {   //自动触发写入的函数
+            this.getXinwen();//获取详情信息内容
+            this.getUser();
+        },
+        methods: {
+            baoming: function (id) {
+                var token = localStorage.getItem("token");
+                console.log("tokentokentokentoken" + token)
+
+                if (token == null) {
+                    window.open(baseURL + 'login.html');
+                } else {
+                    var temp = {"id": id, token: token}
+                    $.ajax({
+                        type: "POST",
+                        url: baseURL + "sysIndexQd/baoming",
+                        contentType: "application/json",
+                        data: JSON.stringify(temp),
+                        success: function (r) {
+                            if (r.code == 0) {
+                                alert("报名成功");
+                            } else {
+                                alert(r.msg);
+                            }
+                        }
+                    });
+                }
+
+            },
+
+            getUser: function () {
+                var token = localStorage.getItem("token");
+                console.log("tokentokentokentoken" + token)
+
+                if (token == null) {
+                    // parent.location.href = baseURL + 'login.html';
+                    window.open(baseURL + 'login.html');
+                }else{
+                    var tjarray = {"token":token}
+                    $.ajax({
+                        type: "POST",
+                        url: baseURL + "sysIndexQd/getUser",
+                        contentType: "application/json",
+                        data: JSON.stringify(tjarray),
+                        success: function(r){
+                            if(r.code === 0){
+                                vm.sysuser = r.sysuser;
+                            }else{
+                                alert(r.msg);
+                            }
+                        }
+                    });
+                }
+            },
+
+            enter:function(idx){
+                if(!this.flag){
+                    this.cur = idx;
+                }
+            },
+            leave:function(){
+                if(!this.flag){
+                    this.cur = -1;
+                }
+            },
+            Selected:function(n){
+                this.flag = true;
+                this.cur = n;
+                vm.df = n;
+            },
+            saveZxqd:function(){//
+                var token = localStorage.getItem("token");
+                console.log("ididididididididididid"+vm.xinwen.id);
+                var tjarray = {"token": token,"qdid":vm.qdid,"srqdm":$("#srqdm").val()}
+                $.ajax({
+                    type: "POST",
+                    url: baseURL + "sysIndexQd/saveZxqd",
+                    contentType: "application/json",
+
+                    data: JSON.stringify(tjarray),
+                    success: function (r) {
+                        if (r.code == 0) {
+                            alert("签到成功");
+                            // vm.xinwenList = r.xinwenList;
+                            $("#myZxqdModalPreachData").modal('hide');
+                        } else {
+                            alert(r.msg);
+                        }
+                    }
+                });
+
+            },
+            qd:function(qdid) {
+                vm.qdid = qdid;
+                var token = localStorage.getItem("token");
+                var param = {qdid:qdid,token:token}
+                $.ajax({
+                    type: "POST",
+                    url: baseURL + "sysIndexQd/getQdstatus",
+                    contentType: "application/json",
+
+                    data: JSON.stringify(param),
+                    success: function (r) {
+                        if (r.code == 0) {
+                            $("#myZxqdModalPreachData").modal('show');
+                            // $("#myVideoPreachData").modal('hide');
+                        } else {
+                            alert(r.msg);
+                        }
+                    }
+                });
+
+            },
+            pl:function(xinwen) {
+                $.ajax({
+                    type: "POST",
+                    url: baseURL + "sysIndexQd/getpllist",
+                    contentType: "application/json",
+
+                    data: JSON.stringify(xinwen),
+                    success: function (r) {
+                        if (r.code == 0) {
+                            vm.pllist = r.pllist;
+                            // $("#myVideoPreachData").modal('hide');
+                        } else {
+                            alert(r.msg);
+                        }
+                    }
+                });
+                $("#pinglun").modal('show');
+            },
+            getXinwen: function () {
+                var id ='';
+                var url = location.search;
+                if ( url.indexOf( "?" ) != -1 ) {
+                    var str = url.substr(1); //substr()方法返回从参数值开始到结束的字符串；
+                    var index=str.lastIndexOf("\=");
+                    var id = str.substring(index+1,str.length);
+                    console.log("ididididididid"+id)
+                }
+                tjarray = {"id":id};
+                $.ajax({
+                    type: "POST",
+                    url: baseURL + "sysIndexQd/getXinwen",
+                    contentType: "application/json",
+                    data: JSON.stringify(tjarray),
+                    success: function(r){
+                        if(r.code === 0){
+                            vm.xinwen = r.xinwen;
+                            vm.allFileOlds = r.xinwen.files
+                        }else{
+                            alert(r.msg);
+                        }
+                    }
+                });
+            },
+            ydcw: function(xinwen){
+                var token = localStorage.getItem("token");
+                console.log("tokentokentokentoken" + token)
+                var temp = {"token":token,"itemid":xinwen.id}
+                $.ajax({
+                    type: "POST",
+                    url: baseURL + "sysIndexQd/ydcp",
+                    contentType: "application/json",
+
+                    data: JSON.stringify(temp),
+                    success: function (r) {
+                        if (r.code == 0) {
+                            alert("预定成功");
+                            // vm.sysDingdanALL = r.sysDingdanALL;
+                        } else {
+                            alert(r.msg);
+                        }
+                    }
+                });
+            },
+            refreshCode: function(){
+                this.src = "captcha.jpg?t=" + $.now();
+            },
+            regsave:function(){
+                var data = vm.spassword;
+
+                $.ajax({
+                    type: "POST",
+                    url: baseURL + "sys/regsave",
+                    data: data,
+                    dataType: "json",
+                    success: function(r){
+                        if(r.code == 0){//登录成功
+                            // localStorage.setItem("token", r.token);
+                            // parent.location.href ='index.html';
+                            // vm.errorMsg = r.msg;
+                            vm.errorMsgreg = r.msg;
+                        }else{
+                            vm.error = true;
+                            vm.errorMsgreg = r.msg;
+                        }
+                    }
+                });
+                console.log('aaaaaaaaaaaa'+data)
+            },
+            fh:function(){
+                vm.showLogin=false;
+            },
+            regt: function(){
+                vm.showLogin=true;
+            },
+            login: function () {
+                var data = vm.captcha;
+                $.ajax({
+                    type: "POST",
+                    url: baseURL + "sys/login",
+                    data: data,
+                    dataType: "json",
+                    success: function(r){
+                        if(r.code == 0){//登录成功
+                            localStorage.setItem("token", r.token);
+                            parent.location.href ='index.html';
+                        }else{
+                            vm.error = true;
+                            vm.errorMsg = r.msg;
+                        }
+                    }
+                });
+            }
+        }
+    });
+</script>
+</body>
+</html>

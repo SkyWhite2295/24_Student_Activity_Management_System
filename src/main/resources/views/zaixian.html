@@ -1,0 +1,357 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" by:nzcms·ningzhi.net
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" type="image/ico" href="nz.ico">
+    <link href="js/home/css/css.css" rel="stylesheet" type="text/css"/>
+    <link href="js/home/css/css_2.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <title>在线聊天室</title>
+    <script src="libs/jquery.min.js"></script>
+    <script src="plugins/layer/layer.js"></script>
+    <script src="libs/bootstrap.min.js"></script>
+    <script src="libs/vue.min.js"></script>
+    <script src="plugins/jqgrid/grid.locale-cn.js"></script>
+    <script src="plugins/jqgrid/jquery.jqGrid.min.js"></script>
+    <script src="plugins/ztree/jquery.ztree.all.min.js"></script>
+    <script src="js/common.js"></script>
+    <script src="plugins/laydate/laydate.js"></script>
+    <script src="libs/jquery/jquery.PrintArea.min.js"></script>
+
+    <style>
+        .ssinfo {
+            width: 230px;
+            height: 30px;
+            margin-left: 75px;
+            padding: 0 15px;
+            -moz-border-radius: 6px;
+            -webkit-border-radius: 6px;
+            border-radius: 50px;
+            border: 1px solid #cfcece;
+            -moz-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .1) inset;
+            -webkit-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .1) inset;
+            box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .1) inset;
+            font-family: "Microsoft YaHei", Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: #0a0909;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+            -o-transition: all .2s;
+            -moz-transition: all .2s;
+            -webkit-transition: all .2s;
+            -ms-transition: all .2s;
+            color: #999999;
+        }
+
+        a:link, a:visited {
+            color: #636262;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #636262;
+            font-size:22px;
+            font-family: microsoft yahei;
+        }
+
+        li:hover #b{
+            display: block;
+        }
+
+        #b{
+            display: none;
+        }
+    </style>
+
+
+    <!--ie6PNG图片兼容 -->
+    <script type="text/javascript" src="js/home/js/png.js"></script>
+    <script type="text/javascript" src="js/home/js/jquery.liMarquee.js"></script>
+    <script type="text/javascript">
+        DD_belatedPNG.fix('.png,.index_pic_img,.box');
+    </script>
+
+    <!--ie6PNG图片兼容 -->
+</head>
+
+<body>
+<div id="rrapp">
+    <div id="top_box">
+        <div id="top_left">欢迎来到校园第二课堂活动管理平台--在线聊天</div>
+        <div id="top_right">
+            <a href="javascript:void(0);" onclick="AddFavorite('校园第二课堂活动管理平台',location.href)"></a> hello
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript">
+        var timeout = 200;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+            // cancel close timer
+            mcancelclosetime();
+
+            // close old layer
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+            // get new layer and show it
+            ddmenuitem = document.getElementById(id);
+            ddmenuitem.style.visibility = 'visible';
+
+        }
+
+        // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+
+
+        function message() {
+            $('#b').show();
+            $('#c').hide();
+            $('#d').hide();
+            var oDiv=document.getElementById('top_dh_01');
+            oDiv.style.height='130px';
+        }
+
+    </script>
+
+    <div id="top_dh_01" style="text-align: center; background-color: #f5f5f5 ;">
+        <form action="" method="post" class="form form-horizontal">
+            <div id="sddm" style=" width:1300px;margin: auto;height: 100%;overflow:hidden;">
+
+                <ul style=" list-style-type:none;  display:inline; text-align: center; ">
+                    <li style="  line-height: 65px; "><a href="#" style=" color: #3c8dbc;font-size:24px;">在线聊天室</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </li>
+
+                    <li style="  line-height: 65px; font-size:18px;margin-left: 1000px"><a style=" color: #3c8dbc;font-size:18px;" href="index.html">返回</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    </li>
+                </ul>
+            </div>
+        </form>
+
+    </div>
+
+
+
+    <link type="text/css" rel="stylesheet" href="js/home/css/wang.css">
+    <div ><img src="img/white.png" style="width: 10%;"/></div>
+    <div id="box">
+
+        <div class="row">
+            <div class="col-md-3">
+
+                <div class="panel panel-primary" id="online">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">当前在线用户</h3>
+                    </div>
+                    <div class="panel-body" style="height:470px;overflow-y:scroll">
+                        <div class="list-group" style="font-size:20px;" id="users">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-9">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title" id="talktitle"></h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="well" id="log-container" style="height:400px;overflow-y:scroll">
+
+                        </div>
+                        <input type="text" id="myinfo" class="form-control col-md-12" style="width: 80%" placeholder="最多255个字符" maxlength="255"/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<button id="broadcast" type="button" class="btn btn-primary">发送</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    ﻿
+    <!--<div id="end_dh_BOX">-->
+    <footer>
+        <div id="end_dh_03" style="background-color: #f5f5f5;width:100%;color: #3c8dbc;font-family:microsoft yahei;">
+            <br>
+            软件课设开发小组
+            <br>
+            <style>
+                .c_img {
+                    position: relative;
+                    margin-left: -200px;
+                }
+
+                .c_words {
+                    margin-top: -25px;
+                    margin-left: 25px;
+                }
+            </style>
+
+        </div>
+    </footer>
+
+
+
+
+</div>
+
+
+<script src="libs/jquery.min.js"></script>
+<script src="plugins/jqgrid/jquery.jqGrid.min.js"></script>
+<script src="libs/vue.min.js"></script>
+<script src="libs/bootstrap.min.js"></script>
+<script src="libs/app.js"></script>
+<script src="js/common.js"></script>
+
+<script>
+    Date.prototype.format = function(fmt) {
+        var o = {
+            "M+" : this.getMonth()+1,                 //月份
+            "d+" : this.getDate(),                    //日
+            "h+" : this.getHours(),                   //小时
+            "m+" : this.getMinutes(),                 //分
+            "s+" : this.getSeconds(),                 //秒
+            "q+" : Math.floor((this.getMonth()+3)/3), //季度
+            "S"  : this.getMilliseconds()             //毫秒
+        };
+        if(/(y+)/.test(fmt)) {
+            fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));
+        }
+        for(var k in o) {
+            if(new RegExp("("+ k +")").test(fmt)){
+                fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+            }
+        }
+        return fmt;
+    }
+
+    $(document).ready(function() {//函数在加载完成后实现
+        var user = 'admin';//初始化用户信息
+        var uid = '123456';
+        var username = 'admin';
+
+        var token = localStorage.getItem("token");//验证身份
+        console.log("tokentokentokentoken" + token)
+        $.ajaxSettings.async = false;
+        $.post("/jeefast/sysLiaotian/aaaa?aaaa="+token,function(data){//post请求
+            console.log("datadatadata"+JSON.stringify(data))
+            user = data.sysuser.realname;
+            uid = data.sysuser.userId;
+            username = data.sysuser.username;
+        });
+        $.ajaxSettings.async = true;
+        // 创建了一个 WebSocket 连接
+        var websocket;
+        $("#user").html(user);
+
+        if ('WebSocket' in window) {
+            websocket = new WebSocket("ws://localhost:9090/jeefast/webSocket/"+username);
+        }
+        websocket.onmessage = function(event) {
+
+            console.log("eventeventeventevent"+JSON.stringify(event))
+            var data=JSON.parse(event.data);
+            console.log("datadatadatadata"+JSON.stringify(data))
+
+            $("#log-container").append("<div class='bg-info'><label class='text-danger'>"+data.from+"&nbsp;"+data.date+"</label><div class='text-success';style='white-space:normal; word-break:break-all;overflow:hidden;'>"+data.text+"</div></div><br>");
+            // 滚动条滚动到最低部
+            scrollToBottom();
+            // }
+        };
+
+
+        function fetchOnlineUsers() {
+            $.post("/jeefast/sysLiaotian/onlineusers?currentuser=" + user, function (data) {//逐一查找在线人员，添加到users中
+                $("#users").empty(); // 清空之前的内容，避免重复添加
+                for (var i = 0; i < data.length; i++) {
+                    $("#users").append('<a class="list-group-item">' + data[i] + '</a>');
+                    // $("#users").append('<a href="#" onclick="talk(this)" class="list-group-item">'+data[i]+'</a>');
+                }
+            });
+        }
+        fetchOnlineUsers();
+        setInterval(fetchOnlineUsers, 1000); // 5秒一次
+        $("#broadcast").click(function(){
+            if ($("#myinfo").val()=='') {
+                alert("请输入内容");
+                return false;
+            }
+            var data = {};
+            data["from"] = username;
+            data["to"] = -1;
+            data["text"] = $("#myinfo").val();
+            websocket.send(JSON.stringify(data));
+            $("#log-container").append("<div class='bg-success'><label class='text-info'> 我&nbsp;" + new Date().format("yyyy-MM-dd hh:mm:ss") + "</label><div class='text-info';style='white-space:normal; word-break:break-all;overflow:hidden;'>" + $("#myinfo").val() + "</div></div><br>");
+            scrollToBottom();
+            $("#myinfo").val("");//清空输入框
+        });
+
+
+
+    });
+
+
+    function scrollToBottom(){
+        var div = document.getElementById('log-container');
+        div.scrollTop = div.scrollHeight;
+    }
+</script>
+
+<script type="text/javascript">
+    var vm = new Vue({
+        el:'#rrapp',
+        data:{
+            showLogin:false,
+            username: '',
+            password: '',
+            captcha: '',
+            error: false,
+            errorMsg: '',
+            errorMsgreg:'',
+            src: 'captcha.jpg',
+            sxh:'',
+            sname:'',
+            xzraol:'',
+            susername:'',
+            spassword:'',
+            college:'',
+            major:'',
+            classinfo:'',
+            grade:'',
+            zcspassword:'',
+            foodList:[],
+
+        },
+        beforeCreate: function(){
+            if(self != top){
+                top.location.href = self.location.href;
+            }
+        }
+
+    });
+</script>
+
+</body>
+</html>

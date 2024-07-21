@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.jeefast.system.dao.SysZcyxyzmDao">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="cn.jeefast.system.entity.SysZcyxyzm">
+		<id column="id" property="id" />
+		<result column="username" property="username" />
+		<result column="text" property="text" />
+		<result column="sj" property="sj" />
+		<result column="createuser" property="createuser" />
+		<result column="createtime" property="createtime" />
+		<result column="updateuser" property="updateuser" />
+		<result column="updatetime" property="updatetime" />
+	</resultMap>
+	<insert id="save">
+		insert into sys_zcyxyzm (
+		id
+		,username
+		,text
+		,sj
+		,createuser
+		,createtime
+		,updateuser
+		,updatetime
+		) values
+		   (
+			#{sysZcyxyzm.id}
+			,#{sysZcyxyzm.username}
+			,#{sysZcyxyzm.text}
+			,#{sysZcyxyzm.sj}
+			,#{sysZcyxyzm.createuser}
+			,#{sysZcyxyzm.createtime}
+			,#{sysZcyxyzm.updateuser}
+			,#{sysZcyxyzm.updatetime}
+			)
+
+
+	</insert>
+
+
+	<delete id="deleteBatch">
+		delete from sys_zcyxyzm where id in
+		<foreach item="ids" collection="array" open="(" separator="," close=")">
+			#{ids}
+		</foreach>
+	</delete>
+	<select id="queryPageList" resultType="cn.jeefast.system.entity.SysZcyxyzm">
+		select r.*  from sys_zcyxyzm r
+		<where>
+			<if test="name != null and name.trim() != ''">
+				and r.`name` like concat('%',#{name},'%')
+			</if>
+		</where>
+		order by r.updatetime desc
+	</select>
+</mapper>
